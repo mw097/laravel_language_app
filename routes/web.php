@@ -25,3 +25,8 @@ Route::get('/posts', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/quiz', 'QuizzesController@index');
+Route::get('/quiz/create', 'QuizzesController@create');
+Route::get('/quiz/{$id}', 'QuizzesController@show');
+Route::get('/quiz/{$id}/edit', 'QuizzesControlle@edit');
+

@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>LanguageApp</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -81,19 +81,16 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    LanguageApp
                 </div>
-
+                @auth
                 <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="/quiz/create">Crate quiz</a>
+                    <a href="#">Quiz list</a>
+                    <a href="#">Edit quiz</a>
+                    <a href="#">About us</a>
                 </div>
+                @endauth
             </div>
         </div>
     </body>
