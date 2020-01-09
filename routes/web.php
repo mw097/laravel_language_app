@@ -29,4 +29,3 @@ Route::get('/quiz', 'QuizzesController@index');
 Route::get('/quiz/create', 'QuizzesController@create');
 Route::get('/quiz/{$id}', 'QuizzesController@show');
 Route::get('/quiz/{$id}/edit', 'QuizzesControlle@edit');
-

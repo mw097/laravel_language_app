@@ -8,7 +8,7 @@ class QuizzesController extends Controller
 {
     function index()
     {
-
+        return view('quizzes.show');
     }
 
     function create()
