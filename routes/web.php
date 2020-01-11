@@ -18,7 +18,6 @@ Route::get('/', function () {
 
 Route::get('/posts', function () {
     $posts = \App\Post::all();
-    //dd($posts); sprytna funkcja, wyswietli nam rekordy tabeli posts
     return view('posts')->withPosts($posts);
 });
 
@@ -29,3 +28,5 @@ Route::get('/quiz', 'QuizzesController@index');
 Route::get('/quiz/create', 'QuizzesController@create');
 Route::get('/quiz/{$id}', 'QuizzesController@show');
 Route::get('/quiz/{$id}/edit', 'QuizzesControlle@edit');
+
+Route::get('/quiz/create/translate_words', 'QuizzesController@translate_words');

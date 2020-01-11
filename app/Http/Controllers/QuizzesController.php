@@ -6,13 +6,19 @@ use Illuminate\Http\Request;
 
 class QuizzesController extends Controller
 {
-    function index()
+    public function index()
     {
         return view('quizzes.show');
     }
 
-    function create()
+    public function create()
     {
         return view('quizzes.create');
     }
+
+    public function translate_words()
+    {
+        return view('quizzes.type.translate_words');
+    }
+
 }
