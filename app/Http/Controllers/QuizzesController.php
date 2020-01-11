@@ -20,5 +20,4 @@ class QuizzesController extends Controller
     {
         return view('quizzes.type.translate_words');
     }
-
 }
