@@ -27,7 +27,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/quiz', 'QuizzesController@index');
 Route::post('/quiz', 'QuizTranslateSentences@store');
 Route::get('/quiz/create', 'QuizzesController@create');
-Route::get('/quiz/create/translate_words', 'QuizzesController@translate_words');
+Route::get('/quiz/create/translate_words', 'QuizzesController@translate_words'); //<- do poprawy
 Route::get('/quiz/create/translate_sentences', 'QuizTranslateSentences@create');
 
 Route::get('/quiz/{$id}', 'QuizzesController@show');

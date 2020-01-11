@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTranslateSentencesTable extends Migration
+class CreateLanguagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreateTranslateSentencesTable extends Migration
      */
     public function up()
     {
-        Schema::create('translate_sentences', function (Blueprint $table) {
+        Schema::create('languages', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('foreign');
-            $table->string('native');
             $table->string('language');
             $table->timestamps();
         });
@@ -29,6 +27,6 @@ class CreateTranslateSentencesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('translate_sentences');
+        Schema::dropIfExists('languages');
     }
 }

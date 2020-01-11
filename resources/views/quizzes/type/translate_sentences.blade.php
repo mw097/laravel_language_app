@@ -20,7 +20,11 @@
             </div>
             <div id="field3">
                 <label>Language</label>
-                <textarea name="language"></textarea>
+                <select name="language">
+                    @foreach($languages as $language)
+                    <option value="{{$language->language}}"}}>{{$language->language}}</option>
+                    @endforeach
+                </select>
                 @error('language')
                 <p class="help is-danger">{{$message}}</p>
                 @enderror

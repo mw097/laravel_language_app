@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\TranslateSentences;
+use App\Language;
 use Illuminate\Http\Request;
 
 class QuizTranslateSentences extends Controller
@@ -24,7 +25,9 @@ class QuizTranslateSentences extends Controller
      */
     public function create()
     {
-        return view('quizzes.type.translate_sentences');
+        return view('quizzes.type.translate_sentences', [
+            'languages' => Language::all()
+        ]);
     }
 
     /**
@@ -88,8 +91,8 @@ class QuizTranslateSentences extends Controller
     public function validateTranslateSentences()
     {
         return request()->validate([
-            'foreign' => 'required',
-            'native' => 'required',
+            'foreign' => 'required|max:200',
+            'native' => 'required|max:200',
             'language' => 'required'
         ]);
     }

@@ -10,12 +10,11 @@
                 <form>
                     Select Quiz type:
                     <select name="quizType" onchange="if (this.value) window.location.href='/quiz/create/'+this.value">
-                        <option>Select Quiz</option>
-                        <option value="translate_words" >Translate words</option>
-                        <option value="translate_sentences" >Translate sentences</option>
-                        <option value="choose_translations">Choose translations</option>
-                        <option value="choose_pictures">Choose pictures</option>
-                        <option value="order_sentences">Order sentences</option>
+                        <option value="translate_words" {{Request::segment(3) === 'translate_words' ? 'selected' : ''}}>Translate words</option>
+                        <option value="translate_sentences" {{Request::segment(3)=== 'translate_sentences' ? 'selected' : ''}}>Translate sentences</option>
+                        <option value="choose_translations" {{Request::segment(3)=== 'choose_translations' ? 'selected' : ''}}>Choose translations</option>
+                        <option value="choose_pictures" {{Request::segment(3)=== 'choose_pictures' ? 'selected' : ''}}>Choose pictures</option>
+                        <option value="order_sentences" {{Request::segment(3)=== 'order_sentences' ? 'selected' : ''}}>Order sentences</option>
                     </select>
                 </form>
 
