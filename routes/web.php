@@ -29,6 +29,9 @@ Route::post('/quiz', 'QuizTranslateSentences@store');
 Route::get('/quiz/create', 'QuizzesController@create');
 Route::get('/quiz/create/translate_words', 'QuizzesController@translate_words'); //<- do poprawy
 Route::get('/quiz/create/translate_sentences', 'QuizTranslateSentences@create');
+Route::get('/quiz/create/choose_translations', 'ChooseTranslationController@create');
+
+
 
 Route::get('/quiz/{$id}', 'QuizzesController@show');
 Route::get('/quiz/{$id}/edit', 'QuizzesControlle@edit');
