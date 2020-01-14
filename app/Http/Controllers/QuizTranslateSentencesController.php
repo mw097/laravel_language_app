@@ -6,7 +6,7 @@ use App\TranslateSentences;
 use App\Language;
 use Illuminate\Http\Request;
 
-class QuizTranslateSentences extends Controller
+class QuizTranslateSentencesController extends Controller
 {
     /**
      * Display a listing of the resource.

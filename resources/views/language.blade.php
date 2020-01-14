@@ -7,7 +7,7 @@
             <div id="field">
                 <label>Language</label>
                 <input type="text" name="language">
-                @error('foreign')
+                @error('language')
                 <p class="help is-danger">{{$message}}</p>
                 @enderror
             </div>
