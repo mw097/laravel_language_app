@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\TranslateSentences;
+use App\TranslateSentence;
 use App\Language;
 use Illuminate\Http\Request;
 
-class QuizTranslateSentencesController extends Controller
+class TranslateSentencesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -38,7 +38,7 @@ class QuizTranslateSentencesController extends Controller
      */
     public function store(Request $request)
     {
-        TranslateSentences::create($this->validateTranslateSentences());
+        TranslateSentence::create($this->validateTranslateSentences());
 
         return redirect('/quiz');
     }

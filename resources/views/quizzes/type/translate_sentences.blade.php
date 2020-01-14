@@ -2,7 +2,7 @@
 
 @section ('quizType')
     <div class="container">
-        <form method="POST" action="/quiz">
+        <form method="POST" action="/translateSentences">
             @csrf
             <div id="field">
                 <label>Foreign</label>

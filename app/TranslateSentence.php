@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TranslateSentences extends Model
+class TranslateSentence extends Model
 {
     protected $guarded = [];
 
