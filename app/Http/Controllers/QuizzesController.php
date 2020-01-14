@@ -16,4 +16,8 @@ class QuizzesController extends Controller
         return view('quizzes.create');
     }
 
+    public function translate_words()
+    {
+        return view('quizzes.type.translate_words');
+    }
 }
