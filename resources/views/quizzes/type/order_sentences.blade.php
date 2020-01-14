@@ -5,16 +5,9 @@
         <form method="POST" action="/quiz">
             @csrf
             <div id="field">
-                <label>Foreign</label>
-                <input type="text" name="foreign">
+                <label>Sentence to order</label>
+                <input type="text" name="sentence">
                 @error('sentence')
-                <p class="help is-danger">{{$message}}</p>
-                @enderror
-            </div>
-            <div id="field2">
-                <label>Native</label>
-                <input type="text" name="native">
-                @error('native')
                 <p class="help is-danger">{{$message}}</p>
                 @enderror
             </div>
