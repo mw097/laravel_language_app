@@ -87,6 +87,7 @@
                 <div class="links">
                     <a href="/quiz/create">Create quiz</a>
                     <a href="/quiz">Quiz list</a>
+                    <a href="/language">Add language</a>
                     <a href="#">About us</a>
                 </div>
                 @endauth

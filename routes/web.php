@@ -33,5 +33,9 @@ Route::get('/quiz/create/translate_sentences', 'QuizTranslateSentences@create');
 Route::get('/quiz/{$id}', 'QuizzesController@show');
 Route::get('/quiz/{$id}/edit', 'QuizzesControlle@edit');
 
+Route::get('/language', 'LanguageController@create');
+Route::post('/language', 'LanguageController@store');
+
+
 
 
