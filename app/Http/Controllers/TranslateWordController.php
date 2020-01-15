@@ -45,11 +45,11 @@ class TranslateWordController extends Controller
             'language' => 'required'
         ]);
 
-        $quiz = new TranslateWord();
-        $quiz->foreign = $request->foreign;
-        $quiz->native = $request->native;
-        $quiz->language = $request->language;
-        $quiz->save();
+        $translateWord = new TranslateWord();
+        $translateWord->foreign = $request->foreign;
+        $translateWord->native = $request->native;
+        $translateWord->language = $request->language;
+        $translateWord->save();
 
         return redirect('/quiz');
     }
@@ -62,7 +62,10 @@ class TranslateWordController extends Controller
      */
     public function show(TranslateWord $translateWord)
     {
-        //
+        //return view('quizzes.type.show.translate_words_show')->withTranslateWord($translateWord); tu inny sposob ogarnac
+        return view('quizzes.type.show.translate_words_show', [
+            'translateWord' => TranslateWord::latest()->get()
+        ]);
     }
 
     /**
@@ -83,7 +86,7 @@ class TranslateWordController extends Controller
      * @param  \App\TranslateWord  $translateWord
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TranslateWord $quiz)
+    public function update(Request $request, TranslateWord $translateWord)
     {
         $this->validate($request, [
             'foreign' => 'required|max:200',
@@ -91,10 +94,10 @@ class TranslateWordController extends Controller
             'language' => 'required'
         ]);
 
-        $quiz->foreign = $request->foreign;
-        $quiz->native = $request->native;
-        $quiz->language = $request->language;
-        $quiz->save();
+        $translateWord->foreign = $request->foreign;
+        $translateWord->native = $request->native;
+        $translateWord->language = $request->language;
+        $translateWord->save();
 
         return redirect('/quiz');
     }
@@ -105,11 +108,20 @@ class TranslateWordController extends Controller
      * @param  \App\TranslateWord  $translateWord
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TranslateWord $quiz)
+    public function destroy(TranslateWord $translateWord)
     {
-        $quiz->delete();
+        $translateWord->delete();
 
         return redirect('/quiz');
+    }
+
+    public function verifyAnswer(Request $request, TranslateWord $translateWord)
+    {
+        if( !strcmp($request->answer,$translateWord->foreign) ) {
+            return redirect('quizzes.type.show.translate_words_show'); //jakos przekazac ze jest poprawne i zaznaczyc w quizie
+        } else {
+            //tez do tej strony ale z bledem
+        }
     }
 
 }

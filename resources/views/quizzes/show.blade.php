@@ -20,5 +20,9 @@
            <li>{{$ts}} : {{$ts}}</li>
        </ul>
     @endforeach
+
+
+    <a href="{{ route('quiz.translate_words.show') }}">Translate words</a>
+
 </div>
 @endsection

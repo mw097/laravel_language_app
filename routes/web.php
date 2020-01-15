@@ -31,9 +31,13 @@ Route::get('/quiz/create/translate_sentences', 'TranslateSentencesController@cre
 Route::get('/quiz/create/choose_translations', 'ChooseTranslationController@create');
 Route::get('/quiz/create/order_sentences', 'OrderSentencesController@create');
 
+Route::get('/quiz/translate_words','TranslateWordController@show')->name('quiz.translate_words.show');
+
 Route::post('/translateWord', 'TranslateWordController@store');
 Route::post('/translateSentences', 'TranslateSentencesController@store');
 Route::post('/orderSentences', 'OrderSentencesController@store');
+
+Route::post('/translateWord/verifyAnswer', 'TranslateWordController@verifyAnswer');
 
 Route::get('/quiz/{$id}', 'QuizzesController@show');
 Route::get('/quiz/{$id}/edit', 'QuizzesControlle@edit');
