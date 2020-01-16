@@ -17,7 +17,7 @@
     </div>
     @foreach ($translate_sentences as $ts)
        <ul>
-           <li>{{$ts}} : {{$ts}}</li>
+           <li>{{$ts->foreign}} : {{$ts->native}}</li>
        </ul>
     @endforeach
 </div>

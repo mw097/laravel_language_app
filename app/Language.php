@@ -10,6 +10,6 @@ class Language extends Model
 
     public function translate_sentences()
     {
-        return $this->belongsTo(TranslateSentence::class);
+        return $this->hasMany(TranslateSentence::class, 'language', 'language');
     }
 }

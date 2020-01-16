@@ -12,12 +12,11 @@ class QuizzesController extends Controller
     {
         if(request('language'))
         {
-            $test = Language::where('language', request('language'))->firstOrFail()->translate_sentences;
-            dd($test);
+            //$test = Language::where('language', request('language'))->firstOrFail()->translate_sentences;
             return view('quizzes.show', [
                 'languages' => Language::all(),
-                //'translate_sentences' => Language::where('language', request('language'))->firstOrFail()->translate_sentences
-                'translate_sentences' => TranslateSentence::latest()->get()
+                'translate_sentences' => Language::where('language', request('language'))->firstOrFail()->translate_sentences
+                //'translate_sentences' => TranslateSentence::latest()->get()
             ]);
         }else{
             return view('quizzes.show', [

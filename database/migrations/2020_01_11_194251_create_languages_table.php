@@ -18,18 +18,6 @@ class CreateLanguagesTable extends Migration
             $table->string('language');
             $table->timestamps();
         });
-
-        Schema::create('l_t_s', function (Blueprint $table)
-        {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('language_id');
-            $table->unsignedBigInteger('translate_sentence_id');
-            $table->timestamps();
-
-            $table->unique(['language_id', 'translate_sentence_id']);
-            $table->foreign('translate_sentence_id')->references('id')->on('translate_sentences')->onDelete('cascade');
-            $table->foreign('language_id')->references('id')->on('languages')->onDelete('cascade');
-        });
     }
 
     /**
