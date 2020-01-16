@@ -15,6 +15,12 @@ class CreateChoosePicturesTable extends Migration
     {
         Schema::create('choose_pictures', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('foreign');
+            $table->mediumText('image_correct');
+            $table->mediumText('image_1');
+            $table->mediumText('image_2');
+            $table->mediumText('image_3');
+            $table->string('language');
             $table->timestamps();
         });
     }
