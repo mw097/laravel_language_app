@@ -2,18 +2,18 @@
 
 @section ('quizType')
     <div class="container">
-        <form method="POST" action="/translateWord">
-            @csrf
+        <form method="POST" action="{{ route('translateWords.store') }}">
+            {{ csrf_field() }}
             <div id="field">
                 <label>Foreign</label>
-                <input type="text" name="foreign">
+                <input type="text" name="foreign" value="{{ old("foreign") }}">
                 @error('sentence')
                 <p class="help is-danger">{{$message}}</p>
                 @enderror
             </div>
             <div id="field2">
                 <label>Native</label>
-                <input type="text" name="native">
+                <input type="text" name="native" value="{{ old("native") }}">
                 @error('native')
                 <p class="help is-danger">{{$message}}</p>
                 @enderror

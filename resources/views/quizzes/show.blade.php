@@ -20,5 +20,9 @@
            <li>{{$ts->foreign}} : {{$ts->native}}</li>
        </ul>
     @endforeach
+
+
+    <a href="{{ route('translateWords.index') }}">Translate words </a>
+
 </div>
 @endsection
