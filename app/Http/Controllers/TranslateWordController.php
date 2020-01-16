@@ -40,7 +40,6 @@ class TranslateWordController extends Controller
      */
     public function store(Request $request)
     {
-        //TranslateWord::create($this->validateTranslateWord());
         $this->validate($request, [
             'foreign' => 'required|max:200',
             'native' => 'required|max:200',
