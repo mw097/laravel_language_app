@@ -19,13 +19,13 @@ class QuizzesController extends Controller
                 'languages' => Language::all(),
                 //'translate_sentences' => Language::where('language', request('language'))->firstOrFail()->translate_sentences
                 'translate_sentences' => TranslateSentence::latest()->get(),
-                'translate_words' => TranslateWord::latest()->get()
+              //  'translateWord' => TranslateWord::latest()->get()
             ]);
         }else{
             return view('quizzes.show', [
                 'languages' => Language::all(),
                 'translate_sentences' => TranslateSentence::latest()->get(),
-                'translate_words' => TranslateWord::latest()->get()
+               // 'translateWord' => TranslateWord::latest()->get()
             ]);
         }
 //        return view('quizzes.show',[

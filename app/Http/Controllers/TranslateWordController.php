@@ -15,7 +15,9 @@ class TranslateWordController extends Controller
      */
     public function index()
     {
-        //
+        $translateWords = TranslateWord::all();
+
+        return view('quizzes.type.translate_words.index')->withTranslateWords($translateWords);
     }
 
     /**
@@ -25,7 +27,7 @@ class TranslateWordController extends Controller
      */
     public function create()
     {
-        return view('quizzes.type.translate_words', [
+        return view('quizzes.type.translate_words.create', [
             'languages' => Language::all()
         ]);
     }
@@ -51,7 +53,9 @@ class TranslateWordController extends Controller
         $translateWord->language = $request->language;
         $translateWord->save();
 
-        return redirect('/quiz');
+
+       // return redirect()->route('translateWords.show', $translateWord); gdybysmy chcieli bezporednio do quizu wchodzic
+        return redirect()->route('translateWords.index');
     }
 
     /**
@@ -62,10 +66,7 @@ class TranslateWordController extends Controller
      */
     public function show(TranslateWord $translateWord)
     {
-        //return view('quizzes.type.show.translate_words_show')->withTranslateWord($translateWord); tu inny sposob ogarnac
-        return view('quizzes.type.show.translate_words_show', [
-            'translateWord' => TranslateWord::latest()->get()
-        ]);
+        return view('quizzes.type.translate_words.show')->withTranslateWord($translateWord);
     }
 
     /**
@@ -76,7 +77,7 @@ class TranslateWordController extends Controller
      */
     public function edit(TranslateWord $translateWord)
     {
-        //
+        return view('translateWords.edit')->withTranslateWord($translateWord);
     }
 
     /**
@@ -99,7 +100,7 @@ class TranslateWordController extends Controller
         $translateWord->language = $request->language;
         $translateWord->save();
 
-        return redirect('/quiz');
+        return redirect()->route('translateWords.index');
     }
 
     /**
@@ -112,13 +113,13 @@ class TranslateWordController extends Controller
     {
         $translateWord->delete();
 
-        return redirect('/quiz');
+        return redirect()->route('translateWords.index');
     }
 
     public function verifyAnswer(Request $request, TranslateWord $translateWord)
     {
         if( !strcmp($request->answer,$translateWord->foreign) ) {
-            return redirect('quizzes.type.show.translate_words_show'); //jakos przekazac ze jest poprawne i zaznaczyc w quizie
+            return redirect('quizzes.type.show.translate_words.show'); //jakos przekazac ze jest poprawne i zaznaczyc w quizie
         } else {
             //tez do tej strony ale z bledem
         }

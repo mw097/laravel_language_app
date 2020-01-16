@@ -22,7 +22,7 @@
     @endforeach
 
 
-    <a href="{{ route('quiz.translate_words.show') }}">Translate words</a>
+    <a href="{{ route('translateWords.index') }}">Translate words </a>
 
 </div>
 @endsection

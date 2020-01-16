@@ -9,11 +9,11 @@
         </div>
 
         <div>
-            @foreach ($translateWord as $tw)
+
                 <ul>
-                    <li>Podaj znaczenie: {{$tw->foreign}}</li>
+                    <li>Podaj znaczenie: {{$translateWord->foreign}}</li>
                 </ul>
-            @endforeach
+
         </div>
 
         <div class="container">

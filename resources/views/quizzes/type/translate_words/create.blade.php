@@ -2,7 +2,7 @@
 
 @section ('quizType')
     <div class="container">
-        <form method="POST" action="/translateWord">
+        <form method="POST" action="{{ route('translateWords.store') }}">
             @csrf
             <div id="field">
                 <label>Foreign</label>
