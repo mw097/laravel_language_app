@@ -77,7 +77,7 @@ class TranslateWordController extends Controller
      */
     public function edit(TranslateWord $translateWord)
     {
-        return view('translateWords.edit')->withTranslateWord($translateWord);
+        return view('quizzes.type.translate_words.edit')->withTranslateWord($translateWord);
     }
 
     /**
@@ -116,13 +116,14 @@ class TranslateWordController extends Controller
         return redirect()->route('translateWords.index');
     }
 
+
     public function verifyAnswer(Request $request, TranslateWord $translateWord)
     {
-        if( !strcmp($request->answer,$translateWord->foreign) ) {
-            return redirect('quizzes.type.show.translate_words.show'); //jakos przekazac ze jest poprawne i zaznaczyc w quizie
-        } else {
-            //tez do tej strony ale z bledem
-        }
+        $request->validate(
+            ['answer' => "required|regex:/^$translateWord->native$/i"],
+            ['answer.regex' => "Wrong answer! Try again."]
+        );
+        return redirect()->route('translateWords.index');
     }
 
 }

@@ -9,7 +9,6 @@
         </div>
 
         <div>
-
                 <ul>
                     <li>Podaj znaczenie: {{$translateWord->foreign}}</li>
                 </ul>
@@ -17,7 +16,7 @@
         </div>
 
         <div class="container">
-            <form method="POST" action='/translateWord/verifyAnswer'>
+            <form method="POST" action='{{ route('translateWords.verifyAnswer', $translateWord) }}'>
                 @csrf
                 <div id="field1">
                     <label>Odpowiedź</label>
@@ -26,9 +25,11 @@
                     <p class="help is-danger">{{$message}}</p>
                     @enderror
                 </div>
-
                 <button type="submit">OK</button>
             </form>
+
+            //Informacja o dobrej odpowiedzi
+            //przycisk do kolejengo quizu
         </div>
     </div>
 @endsection

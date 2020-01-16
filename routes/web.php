@@ -40,7 +40,7 @@ Route::get('/quiz/create/order_sentences', 'OrderSentencesController@create');
 Route::post('/translateSentences', 'TranslateSentencesController@store');
 Route::post('/orderSentences', 'OrderSentencesController@store');
 
-//Route::post('/translateWord/verifyAnswer', 'TranslateWordController@verifyAnswer');
+Route::post('/translateWord/{translateWord}', 'TranslateWordController@verifyAnswer')->name('translateWords.verifyAnswer');
 
 Route::get('/quiz/{$id}', 'QuizzesController@show');
 Route::get('/quiz/{$id}/edit', 'QuizzesControlle@edit');
