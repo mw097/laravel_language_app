@@ -15,7 +15,7 @@ class OrderSentencesController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**

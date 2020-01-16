@@ -15,7 +15,9 @@ class TranslateWordController extends Controller
      */
     public function index()
     {
-        //
+        $translateWords = TranslateWord::all();
+
+        return view('quizzes.type.translate_words.index')->withTranslateWords($translateWords);
     }
 
     /**
@@ -25,7 +27,7 @@ class TranslateWordController extends Controller
      */
     public function create()
     {
-        return view('quizzes.type.translate_words', [
+        return view('quizzes.type.translate_words.create', [
             'languages' => Language::all()
         ]);
     }
@@ -38,20 +40,21 @@ class TranslateWordController extends Controller
      */
     public function store(Request $request)
     {
-        //TranslateWord::create($this->validateTranslateWord());
         $this->validate($request, [
             'foreign' => 'required|max:200',
             'native' => 'required|max:200',
             'language' => 'required'
         ]);
 
-        $quiz = new TranslateWord();
-        $quiz->foreign = $request->foreign;
-        $quiz->native = $request->native;
-        $quiz->language = $request->language;
-        $quiz->save();
+        $translateWord = new TranslateWord();
+        $translateWord->foreign = $request->foreign;
+        $translateWord->native = $request->native;
+        $translateWord->language = $request->language;
+        $translateWord->save();
 
-        return redirect('/quiz');
+
+       // return redirect()->route('translateWords.show', $translateWord); gdybysmy chcieli bezporednio do quizu wchodzic
+        return redirect()->route('translateWords.index');
     }
 
     /**
@@ -62,7 +65,7 @@ class TranslateWordController extends Controller
      */
     public function show(TranslateWord $translateWord)
     {
-        //
+        return view('quizzes.type.translate_words.show')->withTranslateWord($translateWord);
     }
 
     /**
@@ -73,7 +76,7 @@ class TranslateWordController extends Controller
      */
     public function edit(TranslateWord $translateWord)
     {
-        //
+        return view('quizzes.type.translate_words.edit')->withTranslateWord($translateWord);
     }
 
     /**
@@ -83,7 +86,7 @@ class TranslateWordController extends Controller
      * @param  \App\TranslateWord  $translateWord
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TranslateWord $quiz)
+    public function update(Request $request, TranslateWord $translateWord)
     {
         $this->validate($request, [
             'foreign' => 'required|max:200',
@@ -91,12 +94,12 @@ class TranslateWordController extends Controller
             'language' => 'required'
         ]);
 
-        $quiz->foreign = $request->foreign;
-        $quiz->native = $request->native;
-        $quiz->language = $request->language;
-        $quiz->save();
+        $translateWord->foreign = $request->foreign;
+        $translateWord->native = $request->native;
+        $translateWord->language = $request->language;
+        $translateWord->save();
 
-        return redirect('/quiz');
+        return redirect()->route('translateWords.index');
     }
 
     /**
@@ -105,11 +108,21 @@ class TranslateWordController extends Controller
      * @param  \App\TranslateWord  $translateWord
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TranslateWord $quiz)
+    public function destroy(TranslateWord $translateWord)
     {
-        $quiz->delete();
+        $translateWord->delete();
 
-        return redirect('/quiz');
+        return redirect()->route('translateWords.index');
+    }
+
+
+    public function verifyAnswer(Request $request, TranslateWord $translateWord)
+    {
+        $request->validate(
+            ['answer' => "required|regex:/^$translateWord->native$/i"],
+            ['answer.regex' => "Wrong answer! Try again."]
+        );
+        return redirect()->route('translateWords.index');
     }
 
 }

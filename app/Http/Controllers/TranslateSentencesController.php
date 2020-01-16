@@ -15,7 +15,6 @@ class TranslateSentencesController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**

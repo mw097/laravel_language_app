@@ -8,4 +8,8 @@ class TranslateSentence extends Model
 {
     protected $guarded = [];
 
+    public function language()
+    {
+        return $this->hasMany(Language::class);
+    }
 }
