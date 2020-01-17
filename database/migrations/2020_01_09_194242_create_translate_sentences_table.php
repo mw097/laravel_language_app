@@ -20,7 +20,7 @@ class CreateTranslateSentencesTable extends Migration
             $table->string('language');
             $table->timestamps();
 
-            $table->foreign('language')->references('language')->on('languages')->onDelete('cascade');
+            //$table->foreign('language')->references('language')->on('languages')->onDelete('cascade');
         });
     }
 

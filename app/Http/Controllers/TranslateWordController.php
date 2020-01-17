@@ -15,9 +15,22 @@ class TranslateWordController extends Controller
      */
     public function index()
     {
-        $translateWords = TranslateWord::all();
 
-        return view('quizzes.type.translate_words.index')->withTranslateWords($translateWords);
+        if(request('language'))
+        {
+            return view('quizzes.type.translate_words.index', [
+                'languages' => Language::all(),
+                'translateWords' => Language::where('language', request('language'))->firstOrFail()->translate_words
+            ]);
+        }else{
+            return view('quizzes.type.translate_words.index', [
+                'languages' => Language::all(),
+                'translateWords' => TranslateWord::latest()->get(),
+            ]);
+        }
+//        $translateWords = TranslateWord::all();
+//
+//        return view('quizzes.type.translate_words.index')->withTranslateWords($translateWords);
     }
 
     /**
