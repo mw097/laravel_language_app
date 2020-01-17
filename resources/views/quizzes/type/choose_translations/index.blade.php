@@ -10,8 +10,8 @@
                     @foreach($chooseTranslations  as $chooseTranslation)
                         <li>
                             <strong>{{ $chooseTranslation->foreign }}</strong>
-                            <a href="{{ route('translateWords.show', $chooseTranslation) }}">Take the quiz</a>
-                            <a href="{{ route('translateWords.edit', $chooseTranslation) }}">Edit</a>
+                            <a href="{{ route('chooseTranslations.show', $chooseTranslation) }}">Take the quiz</a>
+                            <a href="{{ route('chooseTranslations.edit', $chooseTranslation) }}">Edit</a>
                         </li>
                     @endforeach
                 </ul>

@@ -43,6 +43,7 @@ Route::post('/translateSentences', 'TranslateSentencesController@store');
 Route::post('/orderSentences', 'OrderSentencesController@store');
 
 Route::post('/translateWord/{translateWord}', 'TranslateWordController@verifyAnswer')->name('translateWords.verifyAnswer');
+Route::post('/chooseTranslation/{chooseTranslation}', 'ChooseTranslationController@verifyAnswer')->name('chooseTranslations.verifyAnswer');
 
 Route::get('/quiz/{$id}', 'QuizzesController@show');
 Route::get('/quiz/{$id}/edit', 'QuizzesControlle@edit');
