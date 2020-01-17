@@ -17,6 +17,7 @@
         </form>
     </div>
     <a href="{{ route('translateWords.index') }}">Translate words </a> <br>
-    <a href="{{ route('translateSentences.index') }}">Translate sentences </a>
+    <a href="{{ route('translateSentences.index') }}">Translate sentences </a> <br>
+    <a href="{{ route('chooseTranslations.index') }}">chooseTranslations </a> <br>
 </div>
 @endsection
