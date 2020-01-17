@@ -1,22 +1,29 @@
 @extends('layouts.app')
 
+
 @section('content')
     <div class="flex-center position-ref full-height">
         <div class="content">
             <div class="title m-b-md">
-                The the Quiz
+                Take the quiz
             </div>
         </div>
 
         <div>
-                <ul>
-                    <li>Translate: {{$translateWord->foreign}}</li>
-                </ul>
-
+            <ul>
+                <li>Organize the sentence in the correct order:</li>
+                @php
+                    $words = explode(" ", $orderSentence->sentence);
+                    shuffle($words);
+                foreach ($words as $word) {
+                    echo "$word ";
+                }
+                @endphp
+            </ul>
         </div>
 
         <div class="container">
-            <form method="POST" action='{{ route('translateWords.verifyAnswer', $translateWord) }}'>
+            <form method="POST" action='{{ route('orderSentences.verifyAnswer', $orderSentence) }}'>
                 @csrf
                 <div id="field1">
                     <label>Answer</label>

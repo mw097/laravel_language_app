@@ -18,6 +18,7 @@
     </div>
     <a href="{{ route('translateWords.index') }}">Translate words </a> <br>
     <a href="{{ route('translateSentences.index') }}">Translate sentences </a> <br>
-    <a href="{{ route('chooseTranslations.index') }}">chooseTranslations </a> <br>
+    <a href="{{ route('chooseTranslations.index') }}">Choose translations </a> <br>
+    <a href="{{ route('orderSentences.index') }}">Order sentences </a> <br>
 </div>
 @endsection
