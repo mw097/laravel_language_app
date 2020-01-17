@@ -8,34 +8,26 @@ use App\ChooseTranslation;
 use App\Language;
 use Illuminate\Http\Request;
 
-class ChooseTranslationController
+class ChooseTranslationController extends Controller
 {
+
+    public function index()
+    {
+        $chooseTranslations = ChooseTranslation::all();
+
+        return view('quizzes.type.choose_translations.index')->withChooseTranslations($chooseTranslations);
+    }
+
     public function create()
     {
-        return view('quizzes.type.choose_translations',[
+        return view('quizzes.type.choose_translations.create',[
             'languages' => Language::all()
         ]);
     }
 
     public function store(Request $request)
     {
-        ChooseTranslation::create($this->validateChooseTranslation());
-
-        $quiz = new ChooseTranslation();
-        $quiz->native = $request->native;
-        $quiz->foreign_correct = $request->foreign_correct;
-        $quiz->foreign_1 = $request->foreign_1;
-        $quiz->foreign_2 = $request->foreign_2;
-        $quiz->foreign_3 = $request->foreign_3;
-        $quiz->language = $request->language;
-        $quiz->save();
-
-        return redirect('/quiz');
-    }
-
-    public function validateChooseTranslation()
-    {
-        return request()->validate([
+        $this->validate($request, [
             'native' => 'required|max:200',
             'foreign_correct' => 'required|max:200',
             'foreign_1' => 'required|max:200',
@@ -44,6 +36,58 @@ class ChooseTranslationController
             'language' => 'required'
         ]);
 
+        $chooseTranslation = new ChooseTranslation();
+        $chooseTranslation->native = $request->native;
+        $chooseTranslation->foreign_correct = $request->foreign_correct;
+        $chooseTranslation->foreign_1 = $request->foreign_1;
+        $chooseTranslation->foreign_2 = $request->foreign_2;
+        $chooseTranslation->foreign_3 = $request->foreign_3;
+        $chooseTranslation->language = $request->language;
+        $chooseTranslation->save();
 
+        return redirect()->route('chooseTranslations.index');
+    }
+
+    public function show(ChooseTranslation $chooseTranslation)
+    {
+        return view('quizzes.type.choose_translations.show')->withChooseTranslation($chooseTranslation);
+
+    }
+
+    public function edit(ChooseTranslation $chooseTranslation)
+    {
+        return view('quizzes.type.choose_translations.edit')->withchooseTranslation($chooseTranslation);
+    }
+
+    public function update(Request $request, ChooseTranslation $chooseTranslation)
+    {
+        $this->validate($request, [
+            'native' => 'required|max:200',
+            'foreign_correct' => 'required|max:200',
+            'foreign_1' => 'required|max:200',
+            'foreign_2' => 'required|max:200',
+            'foreign_3' => 'required|max:200',
+            'language' => 'required'
+        ]);
+
+        $chooseTranslation = new ChooseTranslation();
+        $chooseTranslation->native = $request->native;
+        $chooseTranslation->foreign_correct = $request->foreign_correct;
+        $chooseTranslation->foreign_1 = $request->foreign_1;
+        $chooseTranslation->foreign_2 = $request->foreign_2;
+        $chooseTranslation->foreign_3 = $request->foreign_3;
+        $chooseTranslation->language = $request->language;
+        $chooseTranslation->save();
+
+        return redirect()->route('chooseTranslations.index');
+    }
+
+    public function verifyAnswer(Request $request, ChooseTranslation $chooseTranslation)
+    {
+        $request->validate(
+            ['answer' => "required|regex:/^$chooseTranslation->foreign_correct$/i"],
+            ['answer.regex' => "Wrong answer! Try again."]
+        );
+        return redirect()->route('chooseTranslations.index');
     }
 }
