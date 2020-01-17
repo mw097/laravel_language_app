@@ -2,8 +2,8 @@
 
 @section ('quizType')
     <div class="container">
-        <form method="POST" action="/chooseTranslation">
-            @csrf
+        <form method="POST" action="{{ route('chooseTranslations.store') }}">
+            {{ csrf_field() }}
             <div id="field">
                 <label>Native</label>
                 <input type="text" name="native">
@@ -34,8 +34,8 @@
             </div>
             <div id="field5">
                 <label>Foreign incorrect</label>
-                <input type="text" name="foreign_2">
-                @error('foreign_2')
+                <input type="text" name="foreign_3">
+                @error('foreign_3')
                 <p class="help is-danger">{{$message}}</p>
                 @enderror
             </div>

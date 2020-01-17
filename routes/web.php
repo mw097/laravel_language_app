@@ -24,6 +24,7 @@ Route::get('/posts', function () {
 Auth::routes();
 
 Route::resource('/translateWords', "TranslateWordController")->middleware('auth');
+Route::resource('/chooseTranslations', "ChooseTranslationController")->middleware('auth');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/quiz', 'QuizzesController@index');
@@ -38,7 +39,7 @@ Route::get('/quiz/create/order_sentences', 'OrderSentencesController@create');
 
 //Route::post('/translateWord', 'TranslateWordController@store');
 Route::post('/translateSentences', 'TranslateSentencesController@store');
-Route::post('/chooseTranslation', 'ChooseTranslationController@store');
+//Route::post('/chooseTranslation', 'ChooseTranslationController@store');
 Route::post('/orderSentences', 'OrderSentencesController@store');
 
 Route::post('/translateWord/{translateWord}', 'TranslateWordController@verifyAnswer')->name('translateWords.verifyAnswer');
