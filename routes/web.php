@@ -34,6 +34,7 @@ Route::get('/quiz/create/translate_words', 'TranslateWordController@create');
 Route::get('/quiz/create/translate_sentences', 'TranslateSentenceController@create');
 Route::get('/quiz/create/choose_translations', 'ChooseTranslationController@create');
 Route::get('/quiz/create/order_sentences', 'OrderSentencesController@create');
+Route::get('/quiz/create/choose_pictures', 'ChoosePictureController@create');
 
 //Route::get('/quiz/translate_words','TranslateWordController@index')->name('quiz.translate_words.index');
 //Route::get('/quiz/translate_words/{translateWord}','TranslateWordController@show');//->name('quiz.translate_words.show');
@@ -43,6 +44,7 @@ Route::get('/quiz/create/order_sentences', 'OrderSentencesController@create');
 //Route::post('/translateSentences', 'TranslateSentenceController@store');
 //Route::post('/chooseTranslation', 'ChooseTranslationController@store');
 Route::post('/orderSentences', 'OrderSentencesController@store');
+Route::post('/choosePicture', 'ChoosePictureController@store');
 
 Route::post('/translateWord/{translateWord}', 'TranslateWordController@verifyAnswer')->name('translateWords.verifyAnswer');
 Route::post('/translateSentence/{translateSentence}', 'TranslateSentenceController@verifyAnswer')->name('translateSentences.verifyAnswer');
