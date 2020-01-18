@@ -2,8 +2,8 @@
 
 @section ('quizType')
     <div class="container">
-        <form method="POST" action="/choosePicture" enctype="multipart/form-data" >
-            @csrf
+        <form method="POST" action="{{ route('choosePictures.store') }}" enctype="multipart/form-data" >
+            {{ csrf_field() }}
             <div class="form-group" id="field">
                 <label>Foreign</label>
                 <input type="text" class="form-control" name="foreign">
@@ -53,24 +53,18 @@
             </div>
 
             <div class="form-group" id="field6">
-                <label>Language</label>
-                <input type="text" class="form-control" name="language">
-                @error('language')
-                <p class="help-in-danger">{{$message}}</p>
-                @enderror
-            </div>
-           {{-- <div id="field6">
-                <label>Language</label>
-                <select name="language">
-                    @foreach($languages as $language)
-                        <option value="{{$language->language}}"}}>{{$language->language}}</option>
-                    @endforeach
-                </select>
-                @error('language')
-                <p class="help is-danger">{{$message}}</p>
-                @enderror
-            </div>--}}
-            <button type="submit">Submit form</button>
+                 <label>Language</label>
+                 <select name="language" class="btn btn-primary">
+                     @foreach($languages as $language)
+                         <option value="{{$language->language}}"}}>{{$language->language}}</option>
+                     @endforeach
+                 </select>
+                 @error('language')
+                 <p class="help is-danger">{{$message}}</p>
+                 @enderror
+             </div>
+
+            <button type="submit" class="btn btn-primary" >Submit form</button>
         </form>
     </div>
 @endsection
