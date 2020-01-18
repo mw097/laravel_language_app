@@ -6,18 +6,19 @@
         <div class="title m-b-md">
             List Quiz
         </div>
-        <form>
-            Select language:
-            <select name="quizType" onchange="if (this.value) window.location.href='/quiz'+this.value">
-                <option>Select language...</option>
-                @foreach($languages as $language)
-                    <option value="?language={{$language->language}}"{{Request::segment(2) === $language->language ? 'selected' : ''}}>{{$language->language}}</option>
-                @endforeach
-            </select>
-        </form>
+{{--        <form>--}}
+{{--            Select language:--}}
+{{--            <select name="quizType" onchange="if (this.value) window.location.href='/quiz'+this.value">--}}
+{{--                <option>Select language...</option>--}}
+{{--                @foreach($languages as $language)--}}
+{{--                    <option value="?language={{$language->language}}"{{Request::segment(2) === $language->language ? 'selected' : ''}}>{{$language->language}}</option>--}}
+{{--                @endforeach--}}
+{{--            </select>--}}
+{{--        </form>--}}
     </div>
     <a href="{{ route('translateWords.index') }}">Translate words </a> <br>
     <a href="{{ route('translateSentences.index') }}">Translate sentences </a> <br>
-    <a href="{{ route('chooseTranslations.index') }}">chooseTranslations </a> <br>
+    <a href="{{ route('chooseTranslations.index') }}">Choose translations </a> <br>
+    <a href="{{ route('orderSentences.index') }}">Order sentences </a> <br>
 </div>
 @endsection

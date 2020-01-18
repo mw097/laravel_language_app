@@ -40,7 +40,7 @@ class TranslateSentenceController extends Controller
      */
     public function create()
     {
-        return view('quizzes.type.translate_sentences', [
+        return view('quizzes.type.translate_sentences.create', [
             'languages' => Language::all()
         ]);
     }
