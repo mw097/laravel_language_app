@@ -7,7 +7,7 @@
             {{ method_field('PUT') }}
             <div id="field">
                 <label>Sentence to order</label>
-                <input type="text" name="sentence" value="{{ $orderSentence->foreign }}">
+                <input type="text" name="sentence" value="{{ $orderSentence->sentence }}">
                 @error('sentence')
                 <p class="help is-danger">{{$message}}</p>
                 @enderror
