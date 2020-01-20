@@ -28,9 +28,6 @@ class TranslateWordController extends Controller
                 'translateWords' => TranslateWord::latest()->get(),
             ]);
         }
-//        $translateWords = TranslateWord::all();
-//
-//        return view('quizzes.type.translate_words.index')->withTranslateWords($translateWords);
     }
 
     /**

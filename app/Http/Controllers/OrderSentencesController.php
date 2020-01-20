@@ -15,9 +15,18 @@ class OrderSentencesController extends Controller
      */
     public function index()
     {
-        $orderSentences = OrderSentence::all();
-
-        return view('quizzes.type.order_sentences.index')->withOrderSentences($orderSentences);
+        if(request('language'))
+        {
+            return view('quizzes.type.order_sentences.index', [
+                'languages' => Language::all(),
+                'orderSentences' => Language::where('language', request('language'))->firstOrFail()->order_sentences
+            ]);
+        }else{
+            return view('quizzes.type.order_sentences.index', [
+                'languages' => Language::all(),
+                'orderSentences' => OrderSentence::latest()->get(),
+            ]);
+        }
     }
 
     /**
