@@ -47,3 +47,9 @@ Route::get('/quiz/{$id}/edit', 'QuizzesControlle@edit');
 
 Route::get('/language', 'LanguageController@create');
 Route::post('/language', 'LanguageController@store');
+
+Auth::routes();
+
+Route::get('/admin/dashboard', function(){
+    return 'Wellcome Admin!';
+})->name('admin.dashboard');

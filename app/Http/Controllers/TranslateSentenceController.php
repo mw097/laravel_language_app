@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\TranslateSentence;
 use App\Language;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TranslateSentenceController extends Controller
 {
@@ -63,6 +64,7 @@ class TranslateSentenceController extends Controller
         $translateSentence->foreign = $request->foreign;
         $translateSentence->native = $request->native;
         $translateSentence->language = $request->language;
+        $translateSentence->user_id = Auth::user()->id;
         $translateSentence->save();
 
 

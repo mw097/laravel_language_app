@@ -30,6 +30,12 @@
 
             //Informacja o dobrej odpowiedzi
             //przycisk do kolejengo quizu
+
+            @role('admin')
+            I am a admin!
+            @else
+                I am not a admin...
+            @endrole
         </div>
     </div>
 @endsection
