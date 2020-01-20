@@ -30,6 +30,8 @@
 
             //Informacja o dobrej odpowiedzi
             //przycisk do kolejengo quizu
+            <br>
+            <a href="#">Zgłoś quiz</a>
         </div>
     </div>
 @endsection
