@@ -8,16 +8,12 @@
                 <div class="card-header">Dashboard</div>
 
                 <div class="card-body">
-{{--                    @if (session('status'))--}}
-{{--                        <div class="alert alert-success" role="alert">--}}
-{{--                            {{ session('status') }}--}}
-{{--                        </div>--}}
-{{--                    @endif--}}
-                    @auth
-                        @if()
-                        <h3>Reported:</h3>
-                        @endif
-                    @endauth
+                    @role('admin')
+                        <h4>Reported:</h4>
+                        @foreach($reporteds as $reported)
+                        <a href="{{$reported->link}}">TEXT</a>
+                        @endforeach
+                    @endrole
                 </div>
             </div>
         </div>
