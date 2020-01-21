@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\TranslateSentence;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -14,6 +16,7 @@ class CommentController extends Controller
      */
     public function index()
     {
+
     }
 
     /**
@@ -29,12 +32,26 @@ class CommentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     * @param TranslateSentence $translateSentence
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request)
+    public function store(Request $request, TranslateSentence $translateSentence)
     {
-        //
+        $this->validate($request, [
+            'comment' => 'required|max:1000',
+        ]);
+
+        $comment = new Comment();
+        $comment->quiz_type = 'translateSentence';
+        $comment->quiz_id = $request->segment(1);
+        $comment->comment= $request->comment;
+        $comment->user = Auth::user()->name;
+        $comment->save();
+
+        //return redirect()->route('translateSentence.show', $translateSentence);
+        //return redirect('/home');
     }
 
     /**
@@ -79,6 +96,8 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        //
+        $comment->where('id', $comment->id)-delete();
+
+        return redirect('/home');
     }
 }

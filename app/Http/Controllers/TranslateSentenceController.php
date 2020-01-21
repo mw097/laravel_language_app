@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use App\Reported;
 use App\TranslateSentence;
 use App\Language;
@@ -81,7 +82,9 @@ class TranslateSentenceController extends Controller
      */
     public function show(TranslateSentence $translateSentence)
     {
-        return view('quizzes.type.translate_sentences.show')->withTranslateSentence($translateSentence);
+        return view('quizzes.type.translate_sentences.show',[
+            'comments' => Comment::where('quiz_type', 'translateSentence')->where('quiz_id', $translateSentence->id)->get()
+        ])->withTranslateSentence($translateSentence);
     }
 
     /**
