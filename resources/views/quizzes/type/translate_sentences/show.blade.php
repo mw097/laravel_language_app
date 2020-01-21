@@ -3,6 +3,11 @@
 @section('content')
     <div class="flex-center position-ref full-height">
         <div class="content">
+            @if (session('alert'))
+                <div class="alert alert-success">
+                    {{ session('alert') }}
+                </div>
+            @endif
             <div class="title m-b-md">
                 Rozwiąż QUIZ
             </div>
@@ -27,16 +32,12 @@
                 </div>
                 <button type="submit">OK</button>
             </form>
-
-            //Informacja o dobrej odpowiedzi
-            //przycisk do kolejengo quizu
             <br>
             @role('admin')
-{{--                <a href="#">Zgłoś</a>--}}
-                <a href="{{ route('translateSentences.report', $translateSentence) }}">Zgłoś</a>
             @else
-                I am not a admin...
+                <a href="{{ route('translateSentences.report', $translateSentence) }}">Zgłoś</a>
             @endrole
+                <a href="{{route('translateSentences.show', $translateSentence->id+1 <= \App\TranslateSentence::count() ? $translateSentence->id+1  : $translateSentence->id=1 )}}">Następny</a>
         </div>
     </div>
 @endsection
