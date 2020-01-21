@@ -25,6 +25,7 @@ $I->fillField('foreign_2','Computer');
 $I->fillField('foreign_3','Doors');
 
 $I->see("Angielski","select");
-//$I->selectOption('select','Angielski');
 
 $I->click('Submit form');
+
+
