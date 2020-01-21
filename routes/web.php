@@ -43,6 +43,10 @@ Route::post('/chooseTranslation/{chooseTranslation}', 'ChooseTranslationControll
 Route::post('/orderSentences/{orderSentence}', 'OrderSentencesController@verifyAnswer')->name('orderSentences.verifyAnswer');
 
 Route::get('/translateSentence/{translateSentence}/report', 'TranslateSentenceController@report')->name('translateSentences.report');
+Route::get('/translateWord/{translateWord}/report', 'TranslateWordController@report')->name('translateWords.report');
+Route::get('/orderSentences/{orderSentence}/report', 'OrderSentencesController@report')->name('orderSentences.report');
+Route::get('/chooseTranslation/{chooseTranslation}/report', 'ChooseTranslationController@report')->name('chooseTranslations.report');
+Route::get('/reporteds/{reported}', 'ReportedController@destroy')->name('reporteds.destroy');
 
 Route::get('/quiz/{$id}', 'QuizzesController@show');
 //Route::get('/quiz/{$id}/edit', 'QuizzesControlle@edit');

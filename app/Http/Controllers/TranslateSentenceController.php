@@ -137,7 +137,8 @@ class TranslateSentenceController extends Controller
             ['answer' => "required|regex:/^$translateSentence->native$/i"],
             ['answer.regex' => "Wrong answer! Try again."]
         );
-        return redirect()->route('translateSentences.index');
+        //return redirect()->route('translateSentences.index');
+        return redirect()->back()->with('alert', 'Correct!');
     }
 
     public function report(TranslateSentence $translateSentence)

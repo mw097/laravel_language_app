@@ -28,4 +28,8 @@ class HomeController extends Controller
             'reporteds' => Reported::all()
         ]);
     }
+    public function reported_delete()
+    {
+
+    }
 }

@@ -14,15 +14,12 @@ class DatabaseSeeder extends Seeder
     {
         // Reset cached roles and permissions
         app()['cache']->forget('spatie.permission.cache');
-
-
         Role::create(['name' => 'default']);
         /** @var \App\User $user */
         $user = factory(\App\User::class)->create();
 
         $user->assignRole('default');
         Role::create(['name' => 'admin']);
-
         /** @var \App\User $user */
         $admin = factory(\App\User::class)->create([
             'name' => 'John Doe',

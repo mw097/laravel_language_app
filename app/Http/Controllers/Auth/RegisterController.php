@@ -69,7 +69,6 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-        Role::create(['name' => 'default']);
         $user->assignRole('default');
         return $user;
     }
