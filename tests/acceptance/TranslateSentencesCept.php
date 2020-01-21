@@ -1,6 +1,6 @@
 <?php
 $I = new AcceptanceTester($scenario);
-$I->wantTo('Create TranslateSentencesQuiz');
+$I->wantTo('Create TranslateSentences quiz');
 $I->amOnPage('/');
 
 $I->amGoingTo('Login');
