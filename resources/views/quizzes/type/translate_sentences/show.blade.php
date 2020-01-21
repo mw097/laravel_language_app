@@ -30,9 +30,10 @@
 
             //Informacja o dobrej odpowiedzi
             //przycisk do kolejengo quizu
-
+            <br>
             @role('admin')
-            I am a admin!
+{{--                <a href="#">Zgłoś</a>--}}
+                <a href="{{ route('translateSentences.report', $translateSentence) }}">Zgłoś</a>
             @else
                 I am not a admin...
             @endrole

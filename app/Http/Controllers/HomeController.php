@@ -25,7 +25,7 @@ class HomeController extends Controller
     public function index()
     {
         return view('home', [
-            'reporteds' => Reported::all(),
+            'reporteds' => Reported::all()
         ]);
     }
 }

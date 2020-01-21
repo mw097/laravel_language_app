@@ -15,7 +15,8 @@ class CreateReportedsTable extends Migration
     {
         Schema::create('reporteds', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->text('link');
+            $table->string('quiz_type');
+            $table->bigInteger('quiz_id');
             $table->timestamps();
         });
     }

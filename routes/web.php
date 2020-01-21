@@ -42,14 +42,11 @@ Route::post('/translateSentence/{translateSentence}', 'TranslateSentenceControll
 Route::post('/chooseTranslation/{chooseTranslation}', 'ChooseTranslationController@verifyAnswer')->name('chooseTranslations.verifyAnswer');
 Route::post('/orderSentences/{orderSentence}', 'OrderSentencesController@verifyAnswer')->name('orderSentences.verifyAnswer');
 
+Route::get('/translateSentence/{translateSentence}/report', 'TranslateSentenceController@report')->name('translateSentences.report');
+
 Route::get('/quiz/{$id}', 'QuizzesController@show');
-Route::get('/quiz/{$id}/edit', 'QuizzesControlle@edit');
+//Route::get('/quiz/{$id}/edit', 'QuizzesControlle@edit');
 
 Route::get('/language', 'LanguageController@create');
 Route::post('/language', 'LanguageController@store');
 
-Auth::routes();
-
-Route::get('/admin/dashboard', function(){
-    return 'Wellcome Admin!';
-})->name('admin.dashboard');
