@@ -1,7 +1,7 @@
 <?php
 
 $I = new AcceptanceTester($scenario);
-$I->wantTo('create translate words quiz and solve it');
+$I->wantTo('create order sentence quiz and solve it');
 
 $I->amOnPage('/');
 
@@ -27,7 +27,7 @@ $I->click('Add language');
 
 $I->seeInDatabase("languages", ["language" => "Angielski"]);
 
-$I->amGoingTo('Add translate words quiz');
+$I->amGoingTo('Add order sentence quiz');
 $I->see('Laravel');
 $I->click('Laravel');
 
@@ -35,30 +35,28 @@ $I->see('Create Quiz');
 $I->click('#create_quiz');
 $I->seeCurrentUrlEquals("/quiz/create");
 
-$I->selectOption('quizType','Translate words');
+$I->selectOption('quizType','Order sentences');
 
-$I->seeInCurrentUrl("/quiz/create/translate_words");
+$I->seeInCurrentUrl("/quiz/create/order_sentences");
 
 $I->click("Submit form");
-$I->see("The native field is required.");
+$I->see("The sentence field is required.");
 
-$I->fillField('foreign',"Water");
-$I->fillField('native',"Woda");
+$I->fillField('sentence',"Simple text to check the operation");
 $I->selectOption('language','Angielski');
 
 $I->click("Submit form");
 
-$I->haveInDatabase("translate_words", [
+$I->haveInDatabase("order_sentences", [
     "language" => "Angielski",
-    "foreign" => "Water",
-    "native" => "Woda"
+    "sentence" => "Simple text to check the operation"
     ]);
 
-$I->seeInCurrentUrl("/translateWords");
-$I->see("Water Take the quiz","li");
+$I->seeInCurrentUrl("/orderSentences");
+$I->see("Take the quiz","li");
 $I->click("Take the quiz");
 
-$I->see("Translate: Water");
+$I->see("Take the quiz");
 $I->fillField('answer','wrong');
 $I->click("OK");
 $I->see("Wrong answer! Try again.");
@@ -66,7 +64,7 @@ $I->see("Wrong answer! Try again.");
 $I->click("OK");
 $I->see("The answer field is required.");
 
-$I->fillField('answer','Woda');
+$I->fillField('answer','Simple text to check the operation');
 $I->click("OK");
 $I->see("Correct!");
 

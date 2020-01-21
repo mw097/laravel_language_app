@@ -19,6 +19,6 @@ modules:
         user: 'test'
         password: 'test123'
         #populate: true
-        #cleanup: false
+        #cleanup: true
         dump: tests_codeception/_data/dump.sql
   step_decorators: ~

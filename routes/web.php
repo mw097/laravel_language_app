@@ -29,28 +29,26 @@ Route::resource('/chooseTranslations', "ChooseTranslationController")->middlewar
 Route::resource('/orderSentences', "OrderSentencesController")->middleware('auth');
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/quiz', 'QuizzesController@index');
-Route::get('/quiz/create', 'QuizzesController@create');
+Route::get('/quiz', 'QuizzesController@index')->middleware('auth');
+Route::get('/quiz/create', 'QuizzesController@create')->middleware('auth');
 Route::get('/quiz/create/translate_words', 'TranslateWordController@create');
 Route::get('/quiz/create/translate_sentences', 'TranslateSentenceController@create');
 Route::get('/quiz/create/choose_translations', 'ChooseTranslationController@create');
 Route::get('/quiz/create/order_sentences', 'OrderSentencesController@create');
 
 
-Route::post('/translateWord/{translateWord}', 'TranslateWordController@verifyAnswer')->name('translateWords.verifyAnswer');
-Route::post('/translateSentence/{translateSentence}', 'TranslateSentenceController@verifyAnswer')->name('translateSentences.verifyAnswer');
-Route::post('/chooseTranslation/{chooseTranslation}', 'ChooseTranslationController@verifyAnswer')->name('chooseTranslations.verifyAnswer');
-Route::post('/orderSentences/{orderSentence}', 'OrderSentencesController@verifyAnswer')->name('orderSentences.verifyAnswer');
+Route::post('/translateWord/{translateWord}', 'TranslateWordController@verifyAnswer')->name('translateWords.verifyAnswer')->middleware('auth');
+Route::post('/translateSentence/{translateSentence}', 'TranslateSentenceController@verifyAnswer')->name('translateSentences.verifyAnswer')->middleware('auth');
+Route::post('/chooseTranslation/{chooseTranslation}', 'ChooseTranslationController@verifyAnswer')->name('chooseTranslations.verifyAnswer')->middleware('auth');
+Route::post('/orderSentences/{orderSentence}', 'OrderSentencesController@verifyAnswer')->name('orderSentences.verifyAnswer')->middleware('auth');
 
-Route::get('/translateSentence/{translateSentence}/report', 'TranslateSentenceController@report')->name('translateSentences.report');
-Route::get('/translateWord/{translateWord}/report', 'TranslateWordController@report')->name('translateWords.report');
-Route::get('/orderSentences/{orderSentence}/report', 'OrderSentencesController@report')->name('orderSentences.report');
-Route::get('/chooseTranslation/{chooseTranslation}/report', 'ChooseTranslationController@report')->name('chooseTranslations.report');
-Route::get('/reporteds/{reported}', 'ReportedController@destroy')->name('reporteds.destroy');
+Route::get('/translateSentence/{translateSentence}/report', 'TranslateSentenceController@report')->name('translateSentences.report')->middleware('auth');
+Route::get('/translateWord/{translateWord}/report', 'TranslateWordController@report')->name('translateWords.report')->middleware('auth');
+Route::get('/orderSentences/{orderSentence}/report', 'OrderSentencesController@report')->name('orderSentences.report')->middleware('auth');
+Route::get('/chooseTranslation/{chooseTranslation}/report', 'ChooseTranslationController@report')->name('chooseTranslations.report')->middleware('auth');
+Route::get('/reporteds/{reported}', 'ReportedController@destroy')->name('reporteds.destroy')->middleware('auth');
 
-Route::get('/quiz/{$id}', 'QuizzesController@show');
-//Route::get('/quiz/{$id}/edit', 'QuizzesControlle@edit');
 
-Route::get('/language', 'LanguageController@create');
-Route::post('/language', 'LanguageController@store');
+Route::get('/language', 'LanguageController@create')->middleware('auth');
+Route::post('/language', 'LanguageController@store')->middleware('auth');
 
