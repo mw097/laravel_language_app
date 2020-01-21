@@ -109,7 +109,7 @@ class ChooseTranslationController extends Controller
     public function report(ChooseTranslation $chooseTranslation)
     {
         $report= new Reported();
-        $report->quiz_type = 'translateWord';
+        $report->quiz_type = 'chooseTranslation';
         $report->quiz_id = $chooseTranslation->id;
         $report->save();
 

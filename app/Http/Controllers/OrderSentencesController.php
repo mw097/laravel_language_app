@@ -131,7 +131,7 @@ class OrderSentencesController extends Controller
     public function report(OrderSentence $orderSentence)
     {
         $report= new Reported();
-        $report->quiz_type = 'translateWord';
+        $report->quiz_type = 'orderSentence';
         $report->quiz_id = $orderSentence->id;
         $report->save();
 
