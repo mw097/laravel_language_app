@@ -42,9 +42,10 @@
 
             <div id="field6">
                 <label>Language</label>
-                <select name="language">
+                <select name="language" class="select">
                     @foreach($languages as $language)
                         <option value="{{$language->language}}"}}>{{$language->language}}</option>
+                        {{$language->language}}"}}
                     @endforeach
                 </select>
                 @error('language')
