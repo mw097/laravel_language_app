@@ -18,6 +18,7 @@ class CreateOrderSentencesTable extends Migration
             $table->timestamps();
             $table->string('sentence');
             $table->string('language');
+            $table->bigInteger('user_id');
         });
     }
 

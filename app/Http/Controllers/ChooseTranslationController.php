@@ -9,6 +9,8 @@ use App\Language;
 use App\OrderSentence;
 use App\Reported;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class ChooseTranslationController extends Controller
 {
@@ -28,9 +30,6 @@ class ChooseTranslationController extends Controller
                 'chooseTranslations' => ChooseTranslation::latest()->get(),
             ]);
         }
-     /*   $chooseTranslations = ChooseTranslation::all();
-
-        return view('quizzes.type.choose_translations.index')->withChooseTranslations($chooseTranslations);*/
     }
 
     public function create()
@@ -58,6 +57,7 @@ class ChooseTranslationController extends Controller
         $chooseTranslation->foreign_2 = $request->foreign_2;
         $chooseTranslation->foreign_3 = $request->foreign_3;
         $chooseTranslation->language = $request->language;
+        $chooseTranslation->user_id = Auth::user()->id;
         $chooseTranslation->save();
 
         return redirect()->route('chooseTranslations.index');

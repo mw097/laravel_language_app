@@ -12,11 +12,17 @@
                     @endforeach
                 </select>
                 <ul>
-                    @foreach($orderSentences  as $orderSentence)
+                    @foreach($orderSentences as $orderSentence)
                         <li>
                             <strong>{{ $orderSentence->id }}</strong>
                             <a href="{{ route('orderSentences.show', $orderSentence) }}">Take the quiz</a>
+                            @role('admin')
                             <a href="{{ route('orderSentences.edit', $orderSentence) }}">Edit</a>
+                            @else
+                                @if(Auth::id() == $orderSentence->user_id)
+                                    <a href="{{ route('orderSentences.edit', $orderSentence) }}">Edit</a>
+                                @endif
+                            @endrole
                         </li>
                     @endforeach
                 </ul>
