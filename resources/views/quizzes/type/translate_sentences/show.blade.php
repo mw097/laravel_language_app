@@ -38,6 +38,17 @@
                 <a href="{{ route('translateSentences.report', $translateSentence) }}">Zgłoś</a>
             @endrole
                 <a href="{{route('translateSentences.show', $translateSentence->id+1 <= \App\TranslateSentence::count() ? $translateSentence->id+1  : $translateSentence->id=1 )}}">Następny</a>
+                <div class="comments">
+                    <p>Wyślij komentarz</p>
+                    <form>
+                        <label>Treść:</label>
+                        <textarea type="text">
+                        </textarea>
+                        <button type="submit">Wyślij</button>
+                    </form>
+                    //wylistuj komentarze foreach
+
+                </div>
         </div>
     </div>
 @endsection
