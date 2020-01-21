@@ -15,7 +15,6 @@ class CreateTranslateSentencesTable extends Migration
     {
         Schema::create('translate_sentences', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('userID');
             $table->string('foreign');
             $table->string('native');
             $table->string('language');

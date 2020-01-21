@@ -11,7 +11,19 @@
                     @role('admin')
                         <h4>Reported:</h4>
                         @foreach($reporteds as $reported)
-                        <a href="{{$reported->link}}">TEXT</a>
+                            @switch($reported->quiz_type)
+                                @case('translateWord')
+                                    <a href="/translateWords/{{$reported->quiz_id}}/edit">{{$reported->quiz_type .': '. $reported->quiz_id}}</a>
+                                    <br>
+                                @break
+                                @case('translateSentence')
+                                    <a href="/translateSentences/{{$reported->quiz_id}}/edit">{{$reported->quiz_type .': '. $reported->quiz_id}}</a>
+                                    <br>
+                                @break
+                                @default
+                                    <span>Something went wrong, please try again</span>
+                                    <br>
+                            @endswitch
                         @endforeach
                     @endrole
                 </div>

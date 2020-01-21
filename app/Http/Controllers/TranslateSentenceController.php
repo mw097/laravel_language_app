@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Reported;
 use App\TranslateSentence;
 use App\Language;
 use Illuminate\Http\Request;
@@ -91,7 +92,7 @@ class TranslateSentenceController extends Controller
      */
     public function edit(TranslateSentence $translateSentence)
     {
-        return view('quizzes.type.translate_words.edit')->withTranslateWord($translateSentence);
+        return view('quizzes.type.translate_sentences.edit')->withTranslateSentence($translateSentence);
     }
 
     /**
@@ -137,5 +138,15 @@ class TranslateSentenceController extends Controller
             ['answer.regex' => "Wrong answer! Try again."]
         );
         return redirect()->route('translateSentences.index');
+    }
+
+    public function report(TranslateSentence $translateSentence)
+    {
+        $report= new Reported();
+        $report->quiz_type = 'translateSentence';
+        $report->quiz_id = $translateSentence->id;
+        $report->save();
+
+        return view('quizzes.type.translate_sentences.report')->withTranslateSentence($translateSentence);
     }
 }
