@@ -6,6 +6,8 @@ namespace App\Http\Controllers;
 
 use App\ChooseTranslation;
 use App\Language;
+use App\OrderSentence;
+use App\Reported;
 use Illuminate\Http\Request;
 
 class ChooseTranslationController extends Controller
@@ -101,6 +103,16 @@ class ChooseTranslationController extends Controller
             ['answer' => "required|regex:/^$chooseTranslation->foreign_correct$/i"],
             ['answer.regex' => "Wrong answer! Try again."]
         );
-        return redirect()->route('chooseTranslations.index');
+        return redirect()->back()->with('alert', 'Correct!');
+    }
+
+    public function report(ChooseTranslation $chooseTranslation)
+    {
+        $report= new Reported();
+        $report->quiz_type = 'chooseTranslation';
+        $report->quiz_id = $chooseTranslation->id;
+        $report->save();
+
+        return view('quizzes.type.choose_translations.report')->withChooseTranslation($chooseTranslation);
     }
 }

@@ -4,6 +4,11 @@
 @section('content')
     <div class="flex-center position-ref full-height">
         <div class="content">
+            @if (session('alert'))
+                <div class="alert alert-success">
+                    {{ session('alert') }}
+                </div>
+            @endif
             <div class="title m-b-md">
                 Take the quiz
             </div>
@@ -35,8 +40,12 @@
                 <button type="submit">OK</button>
             </form>
 
-            //Informacja o dobrej odpowiedzi
-            //przycisk do kolejengo quizu
+            @role('admin')
+            @else
+                <a href="{{ route('orderSentences.report', $orderSentence) }}">Zgłoś</a>
+            @endrole
+                <a href="{{route('orderSentences.show', $orderSentence->id+1 <= \App\OrderSentence::count() ? $orderSentence->id+1  : $orderSentence->id=1 )}}">Następny</a>
+
         </div>
     </div>
 @endsection
