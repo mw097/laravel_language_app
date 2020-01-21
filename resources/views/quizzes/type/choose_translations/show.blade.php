@@ -44,7 +44,7 @@
                     <p class="help is-danger">{{$message}}</p>
                     @enderror
                 </div>
-                <button type="submit">OK</button>
+                <button type="submit">Check</button>
             </form>
             @role('admin')
             @else

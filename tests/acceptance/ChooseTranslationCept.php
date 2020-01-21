@@ -39,5 +39,8 @@ $I->click('Choose translations');
 
 $I->selectOption('select', 'Angielski');
 
-$
+$I->click('Take the quiz');
+$I->fillField('answer','house');
+
+$I->click('Check');
 
