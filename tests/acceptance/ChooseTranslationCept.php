@@ -26,6 +26,11 @@ $I->fillField('foreign_3','Doors');
 
 $I->see("Angielski","select");
 
+$I->dontSeeInDatabase("choose_translations",['native' => 'Dom','foreign_correct'=>'House',
+                                              'foreign_1' => 'Lamp', 'foreign_2' => 'Computer',
+                                              'foreign_3' => 'Doors']);
 $I->click('Submit form');
 
+$I->seeInDatabase("choose_translations",['native' => 'Dom']);
 
+$I->amOnPage('/quiz');
