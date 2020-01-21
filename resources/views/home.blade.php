@@ -13,14 +13,17 @@
                         @foreach($reporteds as $reported)
                             @switch($reported->quiz_type)
                                 @case('translateWord')
+                                    <br>
                                     <a href="/translateWords/{{$reported->quiz_id}}/edit">{{$reported->quiz_type .': '. $reported->quiz_id}}</a>
                                     <br>
                                 @break
                                 @case('translateSentence')
-                                    <a href="/translateSentences/{{$reported->quiz_id}}/edit">{{$reported->quiz_type .': '. $reported->quiz_id}}</a>
                                     <br>
+                                    <a href="/translateSentences/{{$reported->quiz_id}}/edit">{{$reported->quiz_type .': '. $reported->quiz_id}}</a>
+                                    <a href="{{route('reporteds.destroy', $reported)}}">Usuń zgłoszenie</a>
                                 @break
                                 @default
+                                    <br>
                                     <span>Something went wrong, please try again</span>
                                     <br>
                             @endswitch
