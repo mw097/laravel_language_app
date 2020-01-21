@@ -6,7 +6,7 @@ $I->amOnPage('/');
 $I->amGoingTo('Login');
 $I->click('Login');
 $I->fillField('email', 'john.doe@gmail.com');
-$I->fillField('password', 'secret123');
+$I->fillField('password', 'secret12');
 $I->click('#login_button');
 
 $I->amOnPage('/');
@@ -24,7 +24,23 @@ $I->fillField('foreign_1','Lamp');
 $I->fillField('foreign_2','Computer');
 $I->fillField('foreign_3','Doors');
 
-$I->see("Angielski","select");
-//$I->selectOption('select','Angielski');
-
+//$I->see("Angielski","language");
+$I->selectOption('language','Angielski');
+$I->dontSeeInDatabase("choose_translations",['native' => 'Dom','foreign_correct'=>'House',
+                                              'foreign_1' => 'Lamp', 'foreign_2' => 'Computer',
+                                              'foreign_3' => 'Doors']);
 $I->click('Submit form');
+
+$I->seeInDatabase("choose_translations",['native' => 'Dom']);
+
+$I->amOnPage('/quiz');
+
+$I->click('Choose translations');
+
+$I->selectOption('select', 'Angielski');
+
+$I->click('Take the quiz');
+$I->fillField('answer','house');
+
+$I->click('OK');
+
