@@ -3,6 +3,11 @@
 @section('content')
     <div class="flex-center position-ref full-height">
         <div class="content">
+            @if (session('alert'))
+                <div class="alert alert-success">
+                    {{ session('alert') }}
+                </div>
+            @endif
             <div class="title m-b-md">
                 The the Quiz
             </div>
@@ -27,9 +32,12 @@
                 </div>
                 <button type="submit">OK</button>
             </form>
+            @role('admin')
+            @else
+                <a href="{{ route('translateWords.report', $translateWord) }}">Zgłoś</a>
+            @endrole
+                <a href="{{route('translateWords.show', $translateWord->id+1 <= \App\TranslateWord::count() ? $translateWord->id+1  : $translateWord->id=1 )}}">Następny</a>
 
-            //Informacja o dobrej odpowiedzi
-            //przycisk do kolejengo quizu
         </div>
     </div>
 @endsection
