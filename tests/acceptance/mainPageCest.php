@@ -1,5 +1,5 @@
 <?php
-
+/*
 class mainPageCest
 {
     public function _before(AcceptanceTester $I)
@@ -34,4 +34,4 @@ class mainPageCest
         $I->see('Add language');
         $I->see('About us');
     }
-}
+}*/

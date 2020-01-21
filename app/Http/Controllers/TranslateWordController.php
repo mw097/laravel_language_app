@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Language;
+use App\Reported;
 use App\TranslateWord;
 use Illuminate\Http\Request;
+
 
 class TranslateWordController extends Controller
 {
@@ -28,9 +30,6 @@ class TranslateWordController extends Controller
                 'translateWords' => TranslateWord::latest()->get(),
             ]);
         }
-//        $translateWords = TranslateWord::all();
-//
-//        return view('quizzes.type.translate_words.index')->withTranslateWords($translateWords);
     }
 
     /**
@@ -135,7 +134,18 @@ class TranslateWordController extends Controller
             ['answer' => "required|regex:/^$translateWord->native$/i"],
             ['answer.regex' => "Wrong answer! Try again."]
         );
-        return redirect()->route('translateWords.index');
+
+        return redirect()->back()->with('alert', 'Correct!');
+    }
+
+    public function report(TranslateWord $translateWord)
+    {
+        $report= new Reported();
+        $report->quiz_type = 'translateWord';
+        $report->quiz_id = $translateWord->id;
+        $report->save();
+
+        return view('quizzes.type.translate_words.report')->withTranslateWord($translateWord);
     }
 
 }

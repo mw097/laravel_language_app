@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Reported;
 use App\TranslateSentence;
 use App\Language;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TranslateSentenceController extends Controller
 {
@@ -63,6 +65,7 @@ class TranslateSentenceController extends Controller
         $translateSentence->foreign = $request->foreign;
         $translateSentence->native = $request->native;
         $translateSentence->language = $request->language;
+        $translateSentence->user_id = Auth::user()->id;
         $translateSentence->save();
 
 
@@ -89,7 +92,7 @@ class TranslateSentenceController extends Controller
      */
     public function edit(TranslateSentence $translateSentence)
     {
-        return view('quizzes.type.translate_words.edit')->withTranslateWord($translateSentence);
+        return view('quizzes.type.translate_sentences.edit')->withTranslateSentence($translateSentence);
     }
 
     /**
@@ -134,6 +137,17 @@ class TranslateSentenceController extends Controller
             ['answer' => "required|regex:/^$translateSentence->native$/i"],
             ['answer.regex' => "Wrong answer! Try again."]
         );
-        return redirect()->route('translateSentences.index');
+        //return redirect()->route('translateSentences.index');
+        return redirect()->back()->with('alert', 'Correct!');
+    }
+
+    public function report(TranslateSentence $translateSentence)
+    {
+        $report= new Reported();
+        $report->quiz_type = 'translateSentence';
+        $report->quiz_id = $translateSentence->id;
+        $report->save();
+
+        return view('quizzes.type.translate_sentences.report')->withTranslateSentence($translateSentence);
     }
 }

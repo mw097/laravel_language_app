@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Language;
 use App\OrderSentence;
+use App\Reported;
 use Illuminate\Http\Request;
 
 class OrderSentencesController extends Controller
@@ -15,9 +16,18 @@ class OrderSentencesController extends Controller
      */
     public function index()
     {
-        $orderSentences = OrderSentence::all();
-
-        return view('quizzes.type.order_sentences.index')->withOrderSentences($orderSentences);
+        if(request('language'))
+        {
+            return view('quizzes.type.order_sentences.index', [
+                'languages' => Language::all(),
+                'orderSentences' => Language::where('language', request('language'))->firstOrFail()->order_sentences
+            ]);
+        }else{
+            return view('quizzes.type.order_sentences.index', [
+                'languages' => Language::all(),
+                'orderSentences' => OrderSentence::latest()->get(),
+            ]);
+        }
     }
 
     /**
@@ -115,6 +125,16 @@ class OrderSentencesController extends Controller
             ['answer' => "required|regex:/^$orderSentence->sentence$/i"],
             ['answer.regex' => "Wrong answer! Try again."]
         );
-        return redirect()->route('orderSentences.index');
+        return redirect()->back()->with('alert', 'Correct!');
+    }
+
+    public function report(OrderSentence $orderSentence)
+    {
+        $report= new Reported();
+        $report->quiz_type = 'orderSentence';
+        $report->quiz_id = $orderSentence->id;
+        $report->save();
+
+        return view('quizzes.type.order_sentences.report')->withOrderSentence($orderSentence);
     }
 }
