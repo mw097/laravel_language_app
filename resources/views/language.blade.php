@@ -2,6 +2,11 @@
 
 @section ('content')
     <div class="container">
+        @if (session('alert'))
+            <div class="alert alert-success">
+                {{ session('alert') }}
+            </div>
+        @endif
         <form method="POST" action="/language">
             @csrf
             <div id="field">

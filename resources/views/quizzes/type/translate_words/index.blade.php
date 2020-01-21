@@ -16,7 +16,13 @@
                         <li>
                             <strong>{{ $translateWord->foreign }}</strong>
                             <a href="{{ route('translateWords.show', $translateWord) }}">Take the quiz</a>
+                            @role('admin')
                             <a href="{{ route('translateWords.edit', $translateWord) }}">Edit</a>
+                            @else
+                                @if(Auth::id() == $translateWord->user_id)
+                                    <a href="{{ route('translateWords.edit', $translateWord) }}">Edit</a>
+                                @endif
+                            @endrole
                         </li>
                     @endforeach
                 </ul>

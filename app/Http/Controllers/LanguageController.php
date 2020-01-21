@@ -39,7 +39,7 @@ class LanguageController extends Controller
     {
         Language::create($this->validateLanguage());
 
-        return redirect('/language');
+        return redirect()->back()->with('alert', 'Language added!');
     }
 
     /**

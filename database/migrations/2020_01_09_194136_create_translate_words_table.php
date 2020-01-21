@@ -19,6 +19,7 @@ class CreateTranslateWordsTable extends Migration
             $table->string('foreign');
             $table->string('native');
             $table->string('language');
+            $table->bigInteger('user_id');
         });
     }
 
