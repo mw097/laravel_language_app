@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Language;
 use App\OrderSentence;
+use App\Reported;
 use Illuminate\Http\Request;
 
 class OrderSentencesController extends Controller
@@ -124,6 +125,16 @@ class OrderSentencesController extends Controller
             ['answer' => "required|regex:/^$orderSentence->sentence$/i"],
             ['answer.regex' => "Wrong answer! Try again."]
         );
-        return redirect()->route('orderSentences.index');
+        return redirect()->back()->with('alert', 'Correct!');
+    }
+
+    public function report(OrderSentence $orderSentence)
+    {
+        $report= new Reported();
+        $report->quiz_type = 'translateWord';
+        $report->quiz_id = $orderSentence->id;
+        $report->save();
+
+        return view('quizzes.type.order_sentences.report')->withOrderSentence($orderSentence);
     }
 }
