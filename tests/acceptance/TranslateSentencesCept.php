@@ -18,14 +18,14 @@ $I->seeCurrentUrlEquals("/quiz/create");
 $I->see("Translate sentences","select");
 $I->selectOption('select','translate_sentences');
 
-$I->fillField('native','Która godzina?');
+$I->fillField('native','Ktora godzina?');
 $I->fillField('foreign','What time is it?');
 
 $I->see("Angielski","select");
 
-$I->dontSeeInDatabase("translate_sentences",['native' => 'Która godzina?']);
+$I->dontSeeInDatabase("translate_sentences",['native' => 'Ktora godzina?']);
 $I->click('Submit form');
 
-$I->seeInDatabase("translate_sentences",['native' => 'Która godzina?']);
+$I->seeInDatabase("translate_sentences",['native' => 'Ktora godzina?']);
 
 $I->amOnPage('/quiz');
