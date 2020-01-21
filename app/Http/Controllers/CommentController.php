@@ -45,13 +45,12 @@ class CommentController extends Controller
 
         $comment = new Comment();
         $comment->quiz_type = 'translateSentence';
-        $comment->quiz_id = $request->segment(1);
+        $comment->quiz_id = $translateSentence->id;
         $comment->comment= $request->comment;
         $comment->user = Auth::user()->name;
         $comment->save();
 
-        //return redirect()->route('translateSentence.show', $translateSentence);
-        //return redirect('/home');
+        return redirect()->back();
     }
 
     /**
@@ -96,8 +95,8 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        $comment->where('id', $comment->id)-delete();
-
-        return redirect('/home');
+        //$comment->where('id', $comment->id)-delete();
+        $comment->delete();
+        return redirect()->back();
     }
 }

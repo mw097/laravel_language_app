@@ -47,7 +47,8 @@ Route::get('/translateWord/{translateWord}/report', 'TranslateWordController@rep
 Route::get('/orderSentences/{orderSentence}/report', 'OrderSentencesController@report')->name('orderSentences.report');
 Route::get('/chooseTranslation/{chooseTranslation}/report', 'ChooseTranslationController@report')->name('chooseTranslations.report');
 Route::get('/reporteds/{reported}', 'ReportedController@destroy')->name('reporteds.destroy');
-Route::post('/comments', 'CommentController@store')->name('comments.store');
+Route::post('/comments/{translateSentence}', 'CommentController@store')->name('comments.store');
+Route::get('/comments/{comment}', 'CommentController@destroy')->name('comments.destroy');
 
 
 Route::get('/quiz/{$id}', 'QuizzesController@show');

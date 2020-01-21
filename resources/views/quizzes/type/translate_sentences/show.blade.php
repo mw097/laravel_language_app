@@ -42,7 +42,6 @@
                     <p>Wyślij komentarz</p>
                     <form method="POST" action="{{route('comments.store', $translateSentence)}}">
                         {{csrf_field()}}
-                        {{method_field('PUT')}}
                         <label>Treść:</label>
                         <textarea type="text" name="comment"></textarea>
                         @error('comment')
@@ -53,6 +52,7 @@
                     @foreach($comments as $comment)
                         <p>Użytkownik: {{$comment->user}}</p>
                         <p>Komentarz: {{$comment->comment}}</p>
+                        <a href="{{route('comments.destroy', $comment)}}">Usuń komentarz</a>
                     @endforeach
                 </div>
         </div>
