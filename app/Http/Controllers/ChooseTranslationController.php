@@ -13,9 +13,22 @@ class ChooseTranslationController extends Controller
 
     public function index()
     {
-        $chooseTranslations = ChooseTranslation::all();
 
-        return view('quizzes.type.choose_translations.index')->withChooseTranslations($chooseTranslations);
+        if(request('language'))
+        {
+            return view('quizzes.type.choose_translations.index', [
+                'languages' => Language::all(),
+                'chooseTranslations' => Language::where('language', request('language'))->firstOrFail()->choose_translations
+            ]);
+        }else{
+            return view('quizzes.type.choose_translations.index', [
+                'languages' => Language::all(),
+                'chooseTranslations' => ChooseTranslation::latest()->get(),
+            ]);
+        }
+     /*   $chooseTranslations = ChooseTranslation::all();
+
+        return view('quizzes.type.choose_translations.index')->withChooseTranslations($chooseTranslations);*/
     }
 
     public function create()

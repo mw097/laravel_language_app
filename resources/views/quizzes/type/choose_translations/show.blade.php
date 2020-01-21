@@ -42,8 +42,6 @@
                 <button type="submit">OK</button>
             </form>
 
-            //Informacja o dobrej odpowiedzi
-            //przycisk do kolejengo quizu
         </div>
     </div>
 @endsection
