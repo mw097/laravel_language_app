@@ -18,7 +18,7 @@ modules:
         dsn: 'mysql:host=localhost;dbname=test'
         user: 'test'
         password: 'test123'
-        populate: true
-        cleanup: true
+        #populate: true
+        #cleanup: false
         dump: tests_codeception/_data/dump.sql
   step_decorators: ~
