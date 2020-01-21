@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Language;
 use App\OrderSentence;
+use App\Reported;
 use Illuminate\Http\Request;
 
 class OrderSentencesController extends Controller
@@ -15,7 +16,18 @@ class OrderSentencesController extends Controller
      */
     public function index()
     {
-        //
+        if(request('language'))
+        {
+            return view('quizzes.type.order_sentences.index', [
+                'languages' => Language::all(),
+                'orderSentences' => Language::where('language', request('language'))->firstOrFail()->order_sentences
+            ]);
+        }else{
+            return view('quizzes.type.order_sentences.index', [
+                'languages' => Language::all(),
+                'orderSentences' => OrderSentence::latest()->get(),
+            ]);
+        }
     }
 
     /**
@@ -25,7 +37,7 @@ class OrderSentencesController extends Controller
      */
     public function create()
     {
-        return view('quizzes.type.order_sentences', [
+        return view('quizzes.type.order_sentences.create', [
             'languages' => Language::all()
         ]);
     }
@@ -43,12 +55,12 @@ class OrderSentencesController extends Controller
             'language' => 'required'
         ]);
 
-        $quiz = new OrderSentence();
-        $quiz->sentence = $request->sentence;
-        $quiz->language = $request->language;
-        $quiz->save();
+        $orderSentence = new OrderSentence();
+        $orderSentence->sentence = $request->sentence;
+        $orderSentence->language = $request->language;
+        $orderSentence->save();
 
-        return redirect('/quiz');
+        return redirect()->route('orderSentences.index');
     }
 
     /**
@@ -59,7 +71,7 @@ class OrderSentencesController extends Controller
      */
     public function show(OrderSentence $orderSentence)
     {
-        //
+        return view('quizzes.type.order_sentences.show')->withOrderSentence($orderSentence);
     }
 
     /**
@@ -70,7 +82,7 @@ class OrderSentencesController extends Controller
      */
     public function edit(OrderSentence $orderSentence)
     {
-        //
+        return view('quizzes.type.order_sentences.edit')->withOrderSentence($orderSentence);
     }
 
     /**
@@ -80,18 +92,18 @@ class OrderSentencesController extends Controller
      * @param  \App\OrderSentence  $orderSentence
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, OrderSentence $quiz)
+    public function update(Request $request, OrderSentence $orderSentence)
     {
         $this->validate($request, [
             'sentence' => 'required|max:200',
             'language' => 'required'
         ]);
 
-        $quiz->sentence = $request->sentence;
-        $quiz->language = $request->language;
-        $quiz->save();
+        $orderSentence->sentence = $request->sentence;
+        $orderSentence->language = $request->language;
+        $orderSentence->save();
 
-        return redirect('/quiz');
+        return redirect()->route('orderSentences.index');
     }
 
     /**
@@ -100,10 +112,29 @@ class OrderSentencesController extends Controller
      * @param  \App\OrderSentence  $orderSentence
      * @return \Illuminate\Http\Response
      */
-    public function destroy(OrderSentence $quiz)
+    public function destroy(OrderSentence $orderSentence)
     {
-        $quiz->delete();
+        $orderSentence->delete();
 
-        return redirect('/quiz');
+        return redirect()->route('orderSentences.index');
+    }
+
+    public function verifyAnswer(Request $request, OrderSentence $orderSentence)
+    {
+        $request->validate(
+            ['answer' => "required|regex:/^$orderSentence->sentence$/i"],
+            ['answer.regex' => "Wrong answer! Try again."]
+        );
+        return redirect()->back()->with('alert', 'Correct!');
+    }
+
+    public function report(OrderSentence $orderSentence)
+    {
+        $report= new Reported();
+        $report->quiz_type = 'orderSentence';
+        $report->quiz_id = $orderSentence->id;
+        $report->save();
+
+        return view('quizzes.type.order_sentences.report')->withOrderSentence($orderSentence);
     }
 }
