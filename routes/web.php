@@ -50,10 +50,6 @@ Route::get('/reporteds/{reported}', 'ReportedController@destroy')->name('reporte
 Route::post('/comments/{translateSentence}', 'CommentController@store')->name('comments.store');
 Route::get('/comments/{comment}', 'CommentController@destroy')->name('comments.destroy');
 
-
-Route::get('/quiz/{$id}', 'QuizzesController@show');
-//Route::get('/quiz/{$id}/edit', 'QuizzesControlle@edit');
-
 Route::get('/language', 'LanguageController@create');
 Route::post('/language', 'LanguageController@store');
 
