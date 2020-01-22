@@ -3,6 +3,11 @@
 @section('content')
     <div class="flex-center position-ref full-height">
         <div class="content">
+            @if (session('alert'))
+                <div class="alert alert-success">
+                    {{ session('alert') }}
+                </div>
+            @endif
             <div class="title m-b-md">
                 Rozwiąż QUIZ
             </div>
@@ -44,7 +49,7 @@
             <form method="POST" action='{{ route('choosePictures.verifyAnswer', $correctImage) }}'>
                 @csrf
                 <div id="field1">
-                    <label>Odpowiedź</label>
+                    <label>Answer</label>
                     <input type="text" name="answer">
                     @error('answer')
                     <p class="help is-danger">{{$message}}</p>
@@ -53,8 +58,12 @@
                 <button type="submit">OK</button>
             </form>
 
-            //Informacja o dobrej odpowiedzi
-            //przycisk do kolejengo quizu
+            @role('admin')
+            @else
+                <a href="{{ route('choosePictures.report', $choosePicture) }}">Zgłoś</a>
+            @endrole
+                <a href="{{route('choosePictures.show', $choosePicture->id+1 <= \App\OrderSentence::count() ? $choosePicture->id+1  : $choosePicture->id=1 )}}">Następny</a>
+
         </div>
     </div>
 @endsection
