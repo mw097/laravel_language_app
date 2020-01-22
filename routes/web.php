@@ -23,19 +23,33 @@ Route::get('/posts', function () {
 
 Auth::routes();
 
+Route::resource('/translateWords', "TranslateWordController")->middleware('auth');
+Route::resource('/translateSentences', "TranslateSentenceController")->middleware('auth');
+Route::resource('/chooseTranslations', "ChooseTranslationController")->middleware('auth');
+Route::resource('/orderSentences', "OrderSentencesController")->middleware('auth');
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/quiz', 'QuizzesController@index');
-Route::post('/quiz', 'QuizTranslateSentences@store');
 Route::get('/quiz/create', 'QuizzesController@create');
-Route::get('/quiz/create/translate_words', 'QuizzesController@translate_words'); //<- do poprawy
-Route::get('/quiz/create/translate_sentences', 'QuizTranslateSentences@create');
+Route::get('/quiz/create/translate_words', 'TranslateWordController@create');
+Route::get('/quiz/create/translate_sentences', 'TranslateSentenceController@create');
+Route::get('/quiz/create/choose_translations', 'ChooseTranslationController@create');
+Route::get('/quiz/create/order_sentences', 'OrderSentencesController@create');
 
-Route::get('/quiz/{$id}', 'QuizzesController@show');
-Route::get('/quiz/{$id}/edit', 'QuizzesControlle@edit');
+
+Route::post('/translateWord/{translateWord}', 'TranslateWordController@verifyAnswer')->name('translateWords.verifyAnswer');
+Route::post('/translateSentence/{translateSentence}', 'TranslateSentenceController@verifyAnswer')->name('translateSentences.verifyAnswer');
+Route::post('/chooseTranslation/{chooseTranslation}', 'ChooseTranslationController@verifyAnswer')->name('chooseTranslations.verifyAnswer');
+Route::post('/orderSentences/{orderSentence}', 'OrderSentencesController@verifyAnswer')->name('orderSentences.verifyAnswer');
+
+Route::get('/translateSentence/{translateSentence}/report', 'TranslateSentenceController@report')->name('translateSentences.report');
+Route::get('/translateWord/{translateWord}/report', 'TranslateWordController@report')->name('translateWords.report');
+Route::get('/orderSentences/{orderSentence}/report', 'OrderSentencesController@report')->name('orderSentences.report');
+Route::get('/chooseTranslation/{chooseTranslation}/report', 'ChooseTranslationController@report')->name('chooseTranslations.report');
+Route::get('/reporteds/{reported}', 'ReportedController@destroy')->name('reporteds.destroy');
+Route::post('/comments/{translateSentence}', 'CommentController@store')->name('comments.store');
+Route::get('/comments/{comment}', 'CommentController@destroy')->name('comments.destroy');
 
 Route::get('/language', 'LanguageController@create');
 Route::post('/language', 'LanguageController@store');
-
-
-
 
