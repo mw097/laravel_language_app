@@ -47,7 +47,7 @@ $I->selectOption('language','Angielski');
 
 $I->click("Submit form");
 
-$I->haveInDatabase("order_sentences", [
+$I->seeInDatabase("order_sentences", [
     "language" => "Angielski",
     "sentence" => "Simple text to check the operation"
     ]);
