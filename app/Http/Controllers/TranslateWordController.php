@@ -6,6 +6,7 @@ use App\Language;
 use App\Reported;
 use App\TranslateWord;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class TranslateWordController extends Controller
@@ -62,10 +63,9 @@ class TranslateWordController extends Controller
         $translateWord->foreign = $request->foreign;
         $translateWord->native = $request->native;
         $translateWord->language = $request->language;
+        $translateWord->user_id = Auth::user()->id;
         $translateWord->save();
 
-
-       // return redirect()->route('translateWords.show', $translateWord); gdybysmy chcieli bezporednio do quizu wchodzic
         return redirect()->route('translateWords.index');
     }
 

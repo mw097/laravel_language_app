@@ -22,6 +22,7 @@ class CreateChooseTranslationsTable extends Migration
             $table->string('foreign_2');
             $table->string('foreign_3');
             $table->string('language');
+            $table->bigInteger('user_id');
         });
     }
 

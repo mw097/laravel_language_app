@@ -22,7 +22,7 @@
 
         <div class="container">
             <form method="POST" action='{{ route('translateSentences.verifyAnswer', $translateSentence) }}'>
-                @csrf
+                {{ csrf_field() }}
                 <div id="field1">
                     <label>Odpowiedź</label>
                     <input type="text" name="answer">
@@ -38,6 +38,23 @@
                 <a href="{{ route('translateSentences.report', $translateSentence) }}">Zgłoś</a>
             @endrole
                 <a href="{{route('translateSentences.show', $translateSentence->id+1 <= \App\TranslateSentence::count() ? $translateSentence->id+1  : $translateSentence->id=1 )}}">Następny</a>
+                <div class="comments">
+                    <p>Wyślij komentarz</p>
+                    <form method="POST" action="{{route('comments.store', $translateSentence)}}">
+                        {{csrf_field()}}
+                        <label>Treść:</label>
+                        <textarea type="text" name="comment"></textarea>
+                        @error('comment')
+                        <p class="help is-danger">{{$message}}</p>
+                        @enderror
+                        <button type="submit">Wyślij</button>
+                    </form>
+                    @foreach($comments as $comment)
+                        <p>Użytkownik: {{$comment->user}}</p>
+                        <p>Komentarz: {{$comment->comment}}</p>
+                        <a href="{{route('comments.destroy', $comment)}}">Usuń komentarz</a>
+                    @endforeach
+                </div>
         </div>
     </div>
 @endsection

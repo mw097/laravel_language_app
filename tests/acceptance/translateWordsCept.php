@@ -48,7 +48,7 @@ $I->selectOption('language','Angielski');
 
 $I->click("Submit form");
 
-$I->haveInDatabase("translate_words", [
+$I->seeInDatabase("translate_words", [
     "language" => "Angielski",
     "foreign" => "Water",
     "native" => "Woda"

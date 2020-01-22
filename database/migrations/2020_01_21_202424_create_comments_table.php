@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTranslateWordsTable extends Migration
+class CreateCommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateTranslateWordsTable extends Migration
      */
     public function up()
     {
-        Schema::create('translate_words', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('user');
+            $table->bigInteger('quiz_id');
+            $table->string('quiz_type');
+            $table->text('comment');
             $table->timestamps();
-            $table->string('foreign');
-            $table->string('native');
-            $table->string('language');
-            $table->bigInteger('user_id');
         });
     }
 
@@ -30,6 +30,6 @@ class CreateTranslateWordsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('translate_words');
+        Schema::dropIfExists('comments');
     }
 }

@@ -6,6 +6,8 @@ use App\Language;
 use App\OrderSentence;
 use App\Reported;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class OrderSentencesController extends Controller
 {
@@ -58,6 +60,7 @@ class OrderSentencesController extends Controller
         $orderSentence = new OrderSentence();
         $orderSentence->sentence = $request->sentence;
         $orderSentence->language = $request->language;
+        $orderSentence->user_id = Auth::user()->id;
         $orderSentence->save();
 
         return redirect()->route('orderSentences.index');

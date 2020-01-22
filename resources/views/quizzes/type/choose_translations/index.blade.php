@@ -20,7 +20,7 @@
                             <a href="{{ route('chooseTranslations.edit', $chooseTranslation) }}">Edit</a>
                             @else
                                 @if(Auth::id() == $chooseTranslation->user_id)
-                                    <a href="{{ route('$chooseTranslation.edit', $chooseTranslation) }}">Edit</a>
+                                    <a href="{{ route('chooseTranslations.edit', $chooseTranslation) }}">Edit</a>
                                 @endif
                                 @endrole
                         </li>

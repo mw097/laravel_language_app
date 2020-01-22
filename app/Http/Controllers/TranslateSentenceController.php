@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use App\Reported;
 use App\TranslateSentence;
 use App\Language;
@@ -29,10 +30,6 @@ class TranslateSentenceController extends Controller
                 'translateSentences' => TranslateSentence::latest()->get(),
             ]);
         }
-        //$translateSentences = TranslateSentence::all();
-        //$languages = Language::all();
-
-        //return view('quizzes.type.translate_sentences.index')->withTranslateSentences($translateSentences, $languages);
     }
 
     /**
@@ -68,8 +65,6 @@ class TranslateSentenceController extends Controller
         $translateSentence->user_id = Auth::user()->id;
         $translateSentence->save();
 
-
-        // return redirect()->route('translateWords.show', $translateWord); gdybysmy chcieli bezporednio do quizu wchodzic
         return redirect()->route('translateSentences.index');
     }
 
@@ -81,7 +76,9 @@ class TranslateSentenceController extends Controller
      */
     public function show(TranslateSentence $translateSentence)
     {
-        return view('quizzes.type.translate_sentences.show')->withTranslateSentence($translateSentence);
+        return view('quizzes.type.translate_sentences.show',[
+            'comments' => Comment::where('quiz_type', 'translateSentence')->where('quiz_id', $translateSentence->id)->get()
+        ])->withTranslateSentence($translateSentence);
     }
 
     /**
@@ -137,7 +134,7 @@ class TranslateSentenceController extends Controller
             ['answer' => "required|regex:/^$translateSentence->native$/i"],
             ['answer.regex' => "Wrong answer! Try again."]
         );
-        //return redirect()->route('translateSentences.index');
+
         return redirect()->back()->with('alert', 'Correct!');
     }
 
